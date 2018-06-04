@@ -35,6 +35,7 @@ private:
 				}
 			} while (i < j);
 			swap(a[left], a[j]);
+			if(left!=j) n_swap++;
 			Qsort(left, j - 1);	//jth need to compare
 			Qsort(j + 1, right);
 		}
@@ -72,7 +73,6 @@ public:
 		Qsort(0, n - 1);
 	}
 	void Print() {
-		int n_digits = 0;	//number of digits of mass (integral part only)
 		for (int i = 0; i < n; i++) {
 			double mass = a[i].mass;
 			cout.width(40);
