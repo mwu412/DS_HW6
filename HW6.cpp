@@ -3,6 +3,7 @@
 #include <string>
 #include <iomanip> //setprecision
 #include <map>
+#include <cctype>
 using namespace std;
 
 class Group_of_Molecules {	
@@ -92,23 +93,28 @@ public:
 						case 'x':
 
 						case '[':
+							element += a[i].formula.at(j);
+							char c = a[i].formula.at(j);
+							if (isupper(c)) {		//isalpha, isdigit
+								mapFind = mapTable.find(element);
+								massTotal += mapFind->second;
+							}
+							break;
 						case ']':
 							state = 'x';
 							break;
 						case '(':
 						case ')':
 						}
-						element += a[i].formula.at(j);
-						char c = a[i].formula.at(j+1);
-						if (isupper(c)) {
-							mapFind = mapTable.find(element);
-							massTotal += mapFind->second;
-						}
+						
 					}
 				}
 			}
 			
 		}
+	}
+	void CalculateMass() {
+
 	}
 	void Qsort() {
 		Qsort(0, n - 1);
